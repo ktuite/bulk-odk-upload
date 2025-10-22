@@ -4,9 +4,26 @@
 Collection of Python scripts for bulk uploading various geospatial datasets to ODK Central, including PhotoCity game data, Nigeria administrative boundaries, settlements data, and other geographic datasets.
 
 ## Setup
-1. **Install dependencies**: `pip install pyodk`
-2. **Configure ODK**: Create `odk-config.toml` with your ODK Central credentials (see Configuration section below)
-3. **Download data files**: See individual data directories for download instructions
+
+### 1. Create and Activate Virtual Environment (Recommended)
+```bash
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate virtual environment
+source .venv/bin/activate
+```
+
+### 2. Install Dependencies
+```bash
+pip install pyodk
+```
+
+### 3. Configure ODK Central
+Create `odk-config.toml` with your ODK Central credentials (see Configuration section below)
+
+### 4. Download Data Files
+See individual data directories for download instructions
 
 ## Available Datasets
 
@@ -21,31 +38,32 @@ Collection of Python scripts for bulk uploading various geospatial datasets to O
 - **Source**: [GRID3 Nigeria datasets](ng_data/README.md)
 
 ## Usage
-### Using Virtual Environment (Recommended)
+
+**Prerequisites before running any script:**
+1. Make sure you have activated your virtual environment: `source .venv/bin/activate`
+2. Ensure `odk-config.toml` is configured with your ODK Central credentials
+3. Edit the `FORM_ID` variable in the deployment script you want to run
+
+### Running Scripts
 ```bash
-# Activate virtual environment
+# Make sure virtual environment is activated
 source .venv/bin/activate
 
-# Run PhotoCity scripts
-python photocity/deploy_<dataset>.py
+# PhotoCity scripts (run from root directory)
+python photocity/deploy_zones.py
+python photocity/deploy_flags.py
+python photocity/deploy_model_locations.py
+python photocity/deploy_model_bounding_boxes.py
+python photocity/deploy_si_images.py
 
-# Run Nigeria data scripts
-python deploy_ng_<dataset>.py
+# Nigeria data scripts (run from root directory)  
+python deploy_ng_lga_boundaries.py
+python deploy_ng_lga_test.py
+python deploy_ng_settlements_full.py
+python deploy_ng_settlements_test.py
 ```
 
-### Direct Usage
-```bash
-# For PhotoCity data, navigate to photocity directory
-cd photocity
-python deploy_<dataset>.py
-
-# For Nigeria data, run from root directory
-python deploy_ng_<dataset>.py
-```
-
-**Before running any script:**
-1. **Configure form ID**: Edit the `FORM_ID` variable in each deployment script
-2. **Check ODK Central**: Forms and submissions will be created automatically
+**Note**: Forms and submissions will be created automatically in ODK Central
 
 ## Data Processing
 - `process_data.py` - Process PhotoCity model registry
