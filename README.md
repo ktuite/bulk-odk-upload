@@ -11,18 +11,14 @@ Collection of Python scripts for bulk uploading various geospatial datasets to O
 ## Available Datasets
 
 ### PhotoCity Data
-- **Scripts**: `deploy_model_locations.py`, `deploy_model_bounding_boxes.py`
-- **Data**: `data/model_registry.csv` - 290 crowdsourced 3D building models with locations
-- **Features**: S3 image URLs, geolocations, zone classifications
+- **Location**: `photocity/` directory
+- **Scripts**: Multiple deployment options for 3D models, zones, flags, and Smithsonian images
+- **Details**: See `photocity/README.md` for complete documentation
 
 ### Nigeria Administrative Data
 - **Scripts**: `deploy_ng_lga_boundaries.py`, `deploy_ng_settlements_full.py`, `deploy_ng_settlements_test.py`
 - **Data**: Nigeria LGA boundaries (774 areas) and settlement names
 - **Source**: [GRID3 Nigeria datasets](ng_data/README.md)
-
-### Other Geographic Data
-- **Scripts**: `deploy_zones.py`, `deploy_flags.py`, `deploy_si_images.py`
-- **Data**: Various zone classifications, flags, and satellite imagery datasets
 
 ## Usage
 1. **Configure form ID**: Edit the `FORM_ID` variable in each deployment script
