@@ -1,10 +1,22 @@
-# Nigeria LGA Boundaries - ODK Deployment
+# Nigeria Data - ODK Deployment
 
 ## Overview
-Successfully processed and deployed Nigeria LGA (Local Government Area) boundary data to ODK Central.
+Successfully processed and deployed Nigeria LGA (Local Government Area) boundary data and settlements data to ODK Central.
+
+## Required Data Files
+Download these files and place them in the `ng_data/` directory before running the deployment scripts:
+
+### LGA Boundaries
+- **File**: `NGA_LGA_Boundaries_2_-2954311847614747693.geojson`
+- **Source**: [GRID3 Nigeria Operational LGA Boundaries](https://data.grid3.org/datasets/GRID3::grid3-nga-operational-lga-boundaries/about)
+- **Format**: Download as GeoJSON
+
+### Settlements
+- **File**: `Settlements_in_Nigeria_587705110540301247.csv`
+- **Source**: [GRID3 Nigeria Settlement Names](https://data.grid3.org/datasets/GRID3::grid3-nga-settlement-names/about)
+- **Format**: Download as CSV
 
 ## Data Processing
-- **Source**: `ng_data/NGA_LGA_Boundaries_2_-2954311847614747693.geojson`
 - **Script**: `process_ng_data.py`
 - **Output**: `ng_data/lga_boundaries.csv`
 
