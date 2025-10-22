@@ -20,21 +20,30 @@ pip install pyodk
 ```
 
 ### 3. Configure ODK Central
-Create `odk-config.toml` with your ODK Central credentials (see Configuration section below)
+Create `odk-config.toml` in this directory with your ODK Central credentials (don't check this file in)
+
+```toml
+[central]
+base_url = "http://localhost:8383 or https://your-odk-server.com"
+username = "your-email@example.com"
+password = "your-password"
+default_project_id = 1
+```
+
 
 ### 4. Download Data Files
-See individual data directories for download instructions
+Some data is already in this repo. See individual data directories for download instructions
 
 ## Available Datasets
 
 ### PhotoCity Data
 - **Location**: `photocity/` directory
-- **Scripts**: Multiple deployment options for 3D models, zones, flags, and Smithsonian images
+- **Data**: Multiple deployment options for 3D models, zones, flags, and images (not all 100K, just ~3K imaages from the Smithsonian / National Mall zone)
 - **Details**: See `photocity/README.md` for complete documentation
 
 ### Nigeria Administrative Data
-- **Scripts**: `deploy_ng_lga_boundaries.py`, `deploy_ng_settlements_full.py`, `deploy_ng_settlements_test.py`
-- **Data**: Nigeria LGA boundaries (774 areas) and settlement names
+- **Location**: `ng_data/` directory
+- **Data**: Nigeria LGA boundaries (774 areas) and settlements (+200K)
 - **Source**: [GRID3 Nigeria datasets](ng_data/README.md)
 
 ## Usage
@@ -42,40 +51,26 @@ See individual data directories for download instructions
 **Prerequisites before running any script:**
 1. Make sure you have activated your virtual environment: `source .venv/bin/activate`
 2. Ensure `odk-config.toml` is configured with your ODK Central credentials
-3. Edit the `FORM_ID` variable in the deployment script you want to run
+3. Optionally edit the `FORM_ID` variable in the deployment script if you want to send data to a new version of a form
 
 ### Running Scripts
 ```bash
 # Make sure virtual environment is activated
 source .venv/bin/activate
 
-# PhotoCity scripts (run from root directory)
-python photocity/deploy_zones.py
-python photocity/deploy_flags.py
-python photocity/deploy_model_locations.py
-python photocity/deploy_model_bounding_boxes.py
-python photocity/deploy_si_images.py
+# PhotoCity scripts (run from photocity directory)
+cd photocity/
+python deploy_zones.py
+python deploy_model_locations.py
+python deploy_model_bounding_boxes.py
+python deploy_si_images.py
+python deploy_flags.py
+
+# Nigeria data scripts small test ones (run from root directory)  
+python deploy_ng_lga_test.py
+python deploy_ng_settlements_test.py
 
 # Nigeria data scripts (run from root directory)  
 python deploy_ng_lga_boundaries.py
-python deploy_ng_lga_test.py
 python deploy_ng_settlements_full.py
-python deploy_ng_settlements_test.py
 ```
-
-**Note**: Forms and submissions will be created automatically in ODK Central
-
-## Data Processing
-- `process_data.py` - Process PhotoCity model registry
-- `process_ng_data.py` - Convert Nigeria GeoJSON boundaries to ODK format
-
-## Configuration
-Create `odk-config.toml` with your ODK Central server details:
-```toml
-[central]
-base_url = "https://your-odk-server.com"
-username = "your-email@example.com"
-password = "your-password"
-default_project_id = 1
-```
-**Note**: Keep this file secure and don't commit it to version control (it's already in .gitignore)
