@@ -3,7 +3,6 @@
 Complete workflow: Upload form, publish it, and submit all PhotoCity data
 """
 import csv
-import json
 from pyodk import Client
 
 # Configuration - change these to deploy as a different form
