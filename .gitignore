@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# ODK config (may contain sensitive info)
+odk-local.toml
+odk-config.toml
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
