@@ -87,12 +87,12 @@ def main():
     
     # 1. Upload form
     print("\n1. Uploading form...")
-    r = client.post('/projects/48/forms', data=FORM_XML, headers={'Content-Type': 'application/xml'})
+    r = client.post(f'/projects/{client.project_id}/forms', data=FORM_XML, headers={'Content-Type': 'application/xml'})
     print(f"Upload: {r.status_code}")
     
     # 2. Publish form  
     print("\n2. Publishing form...")
-    r = client.post(f'/projects/48/forms/{FORM_ID}/draft/publish')
+    r = client.post(f'/projects/{client.project_id}/forms/{FORM_ID}/draft/publish')
     print(f"Publish: {r.status_code}")
     
     # 3. Submit data
@@ -110,7 +110,7 @@ def main():
         xml = create_submission_xml(model)
         
         try:
-            r = client.post(f'/projects/48/forms/{FORM_ID}/submissions', xml)
+            r = client.post(f'/projects/{client.project_id}/forms/{FORM_ID}/submissions', xml)
             if r.status_code in [200, 201]:
                 success_count += 1
                 if i % 50 == 0:  # Progress every 50 submissions
