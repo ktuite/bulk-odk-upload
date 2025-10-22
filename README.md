@@ -1,27 +1,45 @@
-# PhotoCity Data for ODK
+# Bulk ODK Upload Scripts
 
 ## Overview
-Converting PhotoCity game data (crowdsourced 3D building models) into ODK forms and submissions for map testing.
+Collection of Python scripts for bulk uploading various geospatial datasets to ODK Central, including PhotoCity game data, Nigeria administrative boundaries, settlements data, and other geographic datasets.
 
-## Files
-- `data/model_registry.csv` - Original PhotoCity data (~290 3D models with locations)
-- `deploy_model_locations.py` - Complete script: creates form, uploads, and submits all data
-- `process_data.py` - Processes model_registry into clean CSV files (optional)
-- `odk-config.toml` - ODK Central server configuration
+## Setup
+1. **Install dependencies**: `pip install pyodk`
+2. **Configure ODK**: Create `odk-config.toml` with your ODK Central credentials (see Configuration section below)
+3. **Download data files**: See individual data directories for download instructions
+
+## Available Datasets
+
+### PhotoCity Data
+- **Scripts**: `deploy_model_locations.py`, `deploy_model_bounding_boxes.py`
+- **Data**: `data/model_registry.csv` - 290 crowdsourced 3D building models with locations
+- **Features**: S3 image URLs, geolocations, zone classifications
+
+### Nigeria Administrative Data
+- **Scripts**: `deploy_ng_lga_boundaries.py`, `deploy_ng_settlements_full.py`, `deploy_ng_settlements_test.py`
+- **Data**: Nigeria LGA boundaries (774 areas) and settlement names
+- **Source**: [GRID3 Nigeria datasets](ng_data/README.md)
+
+### Other Geographic Data
+- **Scripts**: `deploy_zones.py`, `deploy_flags.py`, `deploy_si_images.py`
+- **Data**: Various zone classifications, flags, and satellite imagery datasets
 
 ## Usage
-1. **Change form ID** (if needed): Edit `FORM_ID` variable at top of deploy script
-2. **Run deployment**: `python deploy_model_locations.py`
+1. **Configure form ID**: Edit the `FORM_ID` variable in each deployment script
+2. **Run deployment**: `python deploy_<dataset>.py`
+3. **Check ODK Central**: Forms and submissions will be created automatically
 
-This creates an ODK form with:
-- Model names
-- Model IDs  
-- S3 image URLs (`https://s3-us-west-2.amazonaws.com/photocity-archive/render/{model_id}/0`)
-- Geolocations (lat/lon points)
-- Zone IDs and colors
+## Data Processing
+- `process_data.py` - Process PhotoCity model registry
+- `process_ng_data.py` - Convert Nigeria GeoJSON boundaries to ODK format
 
-## Data Format
-Each submission includes location as `"lat lon 0 0"` for ODK geopoint display on maps.
-
-## Status
-✅ Successfully deployed 290 PhotoCity models to ODK Central project 48
+## Configuration
+Create `odk-config.toml` with your ODK Central server details:
+```toml
+[central]
+base_url = "https://your-odk-server.com"
+username = "your-email@example.com"
+password = "your-password"
+default_project_id = 1
+```
+**Note**: Keep this file secure and don't commit it to version control (it's already in .gitignore)
