@@ -116,7 +116,7 @@ def create_submission_xml(row):
 
 def main():
     print("Setting up ODK client...")
-    client = Client(config_path="odk-config.toml")
+    client = Client(config_path="../odk-config.toml")
     client.open()
     
     # 1. Upload form

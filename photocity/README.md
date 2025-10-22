@@ -29,9 +29,16 @@ PhotoCity was a crowdsourced 3D building reconstruction game. This directory con
 
 ## Usage
 1. **Configure ODK**: Ensure `../odk-config.toml` is set up with your ODK Central credentials
-2. **Choose dataset**: Pick the appropriate deployment script for your needs
-3. **Edit form ID**: Update the `FORM_ID` variable in the script if needed
-4. **Run deployment**: `python deploy_<dataset>.py`
+2. **Activate virtual environment**: `source ../.venv/bin/activate` (from the photocity directory)
+3. **Choose dataset**: Pick the appropriate deployment script for your needs
+4. **Edit form ID**: Update the `FORM_ID` variable in the script if needed
+5. **Run deployment**: `python deploy_<dataset>.py`
+
+Alternatively, you can run from the root directory:
+```bash
+source .venv/bin/activate
+python photocity/deploy_<dataset>.py
+```
 
 ## Data Format
 All datasets are converted to ODK-compatible formats:

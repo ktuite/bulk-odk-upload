@@ -21,9 +21,31 @@ Collection of Python scripts for bulk uploading various geospatial datasets to O
 - **Source**: [GRID3 Nigeria datasets](ng_data/README.md)
 
 ## Usage
+### Using Virtual Environment (Recommended)
+```bash
+# Activate virtual environment
+source .venv/bin/activate
+
+# Run PhotoCity scripts
+python photocity/deploy_<dataset>.py
+
+# Run Nigeria data scripts
+python deploy_ng_<dataset>.py
+```
+
+### Direct Usage
+```bash
+# For PhotoCity data, navigate to photocity directory
+cd photocity
+python deploy_<dataset>.py
+
+# For Nigeria data, run from root directory
+python deploy_ng_<dataset>.py
+```
+
+**Before running any script:**
 1. **Configure form ID**: Edit the `FORM_ID` variable in each deployment script
-2. **Run deployment**: `python deploy_<dataset>.py`
-3. **Check ODK Central**: Forms and submissions will be created automatically
+2. **Check ODK Central**: Forms and submissions will be created automatically
 
 ## Data Processing
 - `process_data.py` - Process PhotoCity model registry
