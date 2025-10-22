@@ -8,6 +8,10 @@ __pycache__/
 odk-local.toml
 odk-config.toml
 
+# Large source data files (keep locally but don't track in git)
+ng_data/Settlements_in_Nigeria_*.csv
+ng_data/NGA_LGA_Boundaries_*.geojson
+
 # macOS
 .DS_Store
 
